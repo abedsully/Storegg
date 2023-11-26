@@ -10,8 +10,9 @@ import Detail from './detail/Detail';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { RootStackParamList } from './config/routeParam';
-import { Provider } from 'react-redux';
-import { store } from './redux/store';
+import MyProduct from './myproduct/MyProduct';
+import { ProductProvider } from './myproduct/ProductContext';
+
 
 
 
@@ -22,7 +23,7 @@ const App = () => {
   // const [detailUrl, setDetailUrl] = useState<string | null>(null)
 
   return (
-    <Provider store={store}>
+    <ProductProvider>
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
@@ -30,9 +31,12 @@ const App = () => {
             component={Home}
           />
           <Stack.Screen name="Detail" component={Detail} />
+          <Stack.Screen name="MyProduct" component={MyProduct} />   
         </Stack.Navigator>
       </NavigationContainer>
-    </Provider>
+    </ProductProvider>
+
+
   );
 }
 

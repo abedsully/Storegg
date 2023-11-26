@@ -1,26 +1,22 @@
-import { Dimensions, Image, ScrollView, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { IDetaiLRowProps } from './interfaces'
-import Custombutton from '../../button/CustomButton'
+import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { IDetaiLRowProps } from './interfaces';
 
 const Detailrow = (props: IDetaiLRowProps) => {
+  const { title, price, description, category, image } = props;
 
-    const {title, price, description, category, image} = props
-     
   return (
     <ScrollView style={styles.container}>
-        <View style={styles.image}>
-            <Image style={styles.images} source={{uri: image}}/>
-        </View>
+      <View style={styles.image}>
+        <Image style={styles.images} source={{ uri: image }} />
+      </View>
 
       <Text style={styles.title}>{title}</Text>
-      {/* <Text>{price}</Text> */}
       <Text style={styles.description}>{description}</Text>
       <Text style={styles.price}>Price: {price}</Text>
-      <Custombutton bg={'#FF9A0C'} title={'Add To Cart'} color={'#fff'} onClick={() => {}}/>
     </ScrollView>
-  )
-}
+  );
+};
 
 export default Detailrow
 
@@ -28,7 +24,7 @@ const styles = StyleSheet.create({
 
     container: {
         backgroundColor: "#fff",
-        paddingBottom: 500,
+        paddingBottom: 20,
     },
 
     image: {

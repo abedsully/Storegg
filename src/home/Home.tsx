@@ -1,9 +1,10 @@
-import { SafeAreaView, StyleSheet, Text, View, FlatList, TouchableOpacity, Button, Image } from 'react-native'
+import { StyleSheet, View, FlatList, TouchableOpacity, Image } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import { IGetProduct, IHomeScreenProps } from '.'
+import { IGetProduct} from '.'
 import Homerow from './component/Homerow'
 import { RootStackScreenProps } from '../config/routeParam';
 import SearchButton from '../button/SearchButton';
+import OwnedProduct from '../button/OwnedProduct';
 
 export type HomeParams = undefined;
 
@@ -18,8 +19,8 @@ const Home = ({ navigation }: RootStackScreenProps<'Home'>) => {
     }, []);
 
     useEffect(() => {
-        const filtered = data.filter(item => item.title.toLowerCase().includes(searchQuery.toLowerCase()));
-        setFilteredData(filtered);
+        const filtered = data?.filter(item => item.title.toLowerCase().includes(searchQuery.toLowerCase()));
+        setFilteredData(filtered || []);
     }, [searchQuery, data]);
 
     const fetchProduct = async () => {
@@ -41,13 +42,13 @@ const Home = ({ navigation }: RootStackScreenProps<'Home'>) => {
         setIsGridView(!isGridView);
     };
 
-    const renderGridItem = ({ item }) => (
+    const renderGridItem = ({ item } : {item: IGetProduct}) => (
         <TouchableOpacity onPress={() => navigation.navigate('Detail', { url: 'https://fakestoreapi.com/products/' + item.id })}>
             <Homerow name={item.title} image={item.image} price={item.price} isGridView={isGridView} />
         </TouchableOpacity>
     );
 
-    const renderListItem = ({ item }) => (
+    const renderListItem = ({ item } : {item: IGetProduct}) => (
         <TouchableOpacity onPress={() => navigation.navigate('Detail', { url: 'https://fakestoreapi.com/products/' + item.id })}>
             <Homerow name={item.title} image={item.image} price={item.price} isGridView={!isGridView} />
         </TouchableOpacity>
@@ -57,7 +58,8 @@ const Home = ({ navigation }: RootStackScreenProps<'Home'>) => {
         <>
             <View style={styles.container}>
                 <SearchButton onChangeText={(text: React.SetStateAction<string>) => setSearchQuery(text)} value={searchQuery} onClear={handleClear} />
-
+                <View style={styles.styling}>
+                <OwnedProduct bg={'#8775a8'} title={'Owned Products   > '} color={'#fff'} onClick={() => navigation.navigate('MyProduct')}/>
                 <TouchableOpacity onPress={toggleView} style={{ padding: 10 }}>
                     {isGridView ? 
                     (
@@ -66,7 +68,7 @@ const Home = ({ navigation }: RootStackScreenProps<'Home'>) => {
                     <Image source={require('../assets/grid.png')} style={styles.gridlistView} /> 
                     )}
                 </TouchableOpacity>
-
+                </View>
                 {isGridView ? (
                     <FlatList
                         key="grid"
@@ -89,9 +91,11 @@ const Home = ({ navigation }: RootStackScreenProps<'Home'>) => {
 
 const styles = StyleSheet.create({
     gridlistView: {
+        marginTop: -20,
         alignSelf: 'flex-end',
         width: 30,
         height: 30,
+        marginLeft: 10,
     },
     container: {
         paddingLeft: 30,
@@ -99,7 +103,13 @@ const styles = StyleSheet.create({
         paddingBottom: 150,
     },
     gridContentContainer: {
-        paddingHorizontal: 15, // Adjust the padding as needed for your design
+        paddingHorizontal: 15,
+    },
+    styling : {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        gap: 90,
     },
 });
 

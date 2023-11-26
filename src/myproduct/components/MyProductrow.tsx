@@ -1,9 +1,32 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity, Alert } from 'react-native'
 import React from 'react'
-import { IHomeRowProps } from './interfaces'
+import { IProductRowProps } from './interfaces'
+import RemoveButton from '../../button/RemoveButton'
+import { useProductContext } from '../ProductContext'
 
-const Homerow = (props: IHomeRowProps) => {
+const MyProductrow = (props: IProductRowProps) => {
     const {name, image, price} = props
+    const { removeProductFromOwned } = useProductContext();
+
+    const handleRemoveProduct = () => {
+        Alert.alert(
+          'Remove Product',
+          'Are you sure you want to remove this product from your owned product list?',
+          [
+            {
+              text: 'Cancel',
+              style: 'cancel',
+            },
+            {
+              text: 'Remove',
+              onPress: () => {
+                removeProductFromOwned(name);
+              },
+            },
+          ]
+        );
+      };
+    
 
   return (
     <View style={styles.card} key={name}>
@@ -13,12 +36,14 @@ const Homerow = (props: IHomeRowProps) => {
             <Text style={styles.cardName}>{name}</Text>
             <Text style={styles.cardPrice}>Price: {price}</Text>
         </View>
+
+        <RemoveButton onClick={handleRemoveProduct}/>
     </View>
 
   )
 }
 
-export default Homerow
+export default MyProductrow
 
 const styles = StyleSheet.create({
     card: {
@@ -30,7 +55,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: "#fff",
-        gap: 10,
     },
 
     description: {
@@ -38,6 +62,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         marginTop: 10,
         gap: 20,
+        paddingRight: 40,
     },
 
     cardName : {
