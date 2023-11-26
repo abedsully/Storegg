@@ -7,6 +7,7 @@ export type RootStackParamList = {
   Home: HomeParams;
   Detail: DetailParams;
   MyProduct: undefined; 
+  MyCoin: undefined;
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =

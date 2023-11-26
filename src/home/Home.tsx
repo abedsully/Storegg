@@ -5,6 +5,7 @@ import Homerow from './component/Homerow'
 import { RootStackScreenProps } from '../config/routeParam';
 import SearchButton from '../button/SearchButton';
 import OwnedProduct from '../button/OwnedProduct';
+import CoinButton from '../button/CoinButton';
 
 export type HomeParams = undefined;
 
@@ -59,7 +60,8 @@ const Home = ({ navigation }: RootStackScreenProps<'Home'>) => {
             <View style={styles.container}>
                 <SearchButton onChangeText={(text: React.SetStateAction<string>) => setSearchQuery(text)} value={searchQuery} onClear={handleClear} />
                 <View style={styles.styling}>
-                <OwnedProduct bg={'#8775a8'} title={'Owned Products   > '} color={'#fff'} onClick={() => navigation.navigate('MyProduct')}/>
+                <OwnedProduct bg={'#8775a8'} title={'My Products  > '} color={'#fff'} onClick={() => navigation.navigate('MyProduct')}/>
+                <CoinButton bg={'#8775a8'} onClick={() => navigation.navigate('MyCoin') }/>
                 <TouchableOpacity onPress={toggleView} style={{ padding: 10 }}>
                     {isGridView ? 
                     (
@@ -95,21 +97,30 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-end',
         width: 30,
         height: 30,
-        marginLeft: 10,
+        marginLeft: 18,
     },
+
+    product: {
+        marginLeft: 30,
+    },
+    
     container: {
         paddingLeft: 30,
         paddingRight: 30,
         paddingBottom: 150,
+        marginBottom: 25,
     },
+
     gridContentContainer: {
-        paddingHorizontal: 15,
+        paddingHorizontal: 10,
     },
+
     styling : {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around',
-        gap: 90,
+        gap: 10,
+        paddingLeft: 10,
     },
 });
 

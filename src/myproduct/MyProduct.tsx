@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useProductContext } from './ProductContext';
 import MyProductrow from './components/MyProductrow';
@@ -12,12 +12,11 @@ interface Product {
 
 const MyProduct = () => {
   const { ownedProducts } = useProductContext();
-  const [isGridView] = useState<boolean>(false);
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.product}>
       {ownedProducts.map((product: Product, index: number) => (
-        <View key={index}>
+        <View key={index} >
             <MyProductrow name={product.title} image={product.image} price={product.price} />
         </View>
 
@@ -28,4 +27,9 @@ const MyProduct = () => {
 
 export default MyProduct;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    product : {
+        padding: 20,
+        marginBottom: 30,
+    }
+});

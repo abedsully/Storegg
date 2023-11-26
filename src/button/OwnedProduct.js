@@ -16,7 +16,7 @@ export default OwnedProduct
 const styles = StyleSheet.create({
     button: {
       marginBottom: 20,
-        width: 200,
+        width: 150,
         height: 53,
         justifyContent: 'center',
         alignItems: 'center',
