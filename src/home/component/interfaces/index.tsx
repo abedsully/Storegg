@@ -1,6 +1,6 @@
 export interface IHomeRowProps {
-    image: string,
-    name: string,
-    price: string,
-    isGridView: boolean,
+  image: string;
+  name: string;
+  price: string;
+  isGridView: boolean;
 }

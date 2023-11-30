@@ -1,13 +1,12 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { DetailParams } from '../detail/Detail';
-import { HomeParams } from '../home/Home';
-
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {DetailParams} from '../detail/Detail';
+import {HomeParams} from '../home/Home';
 
 export type RootStackParamList = {
   Home: HomeParams;
   Detail: DetailParams;
-  MyProduct: undefined; 
-  MyCoin: undefined;
+  MyProduct: undefined;
+  MyCoin: {setCoinValue: (value: number) => void; currentCoinValue?: number};
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =

@@ -1,26 +1,25 @@
-import { Dispatch, SetStateAction } from "react";
+import {Dispatch, SetStateAction} from 'react';
 
 export interface IDetailScreenProps {
-    setDetailUrl: Dispatch<SetStateAction<string|null>>
-    detailUrl: string;
+  setDetailUrl: Dispatch<SetStateAction<string | null>>;
+  detailUrl: string;
 }
 
 export interface IDetailScreenState {
-    data: IGetProductDetail
+  data: IGetProductDetail;
 }
 
 export interface IGetProductDetail {
-    id: number;
-    title: string;
-    price: string;
-    description: string;
-    category: string;
-    image: string;
-    rating: IGetProductResponse[];
+  id: number;
+  title: string;
+  price: string;
+  description: string;
+  category: string;
+  image: string;
+  rating: IGetProductResponse[];
 }
 
 export interface IGetProductResponse {
-    rate: number;
-    count: number;
+  rate: number;
+  count: number;
 }
-

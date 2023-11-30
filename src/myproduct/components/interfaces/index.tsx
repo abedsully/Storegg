@@ -1,5 +1,5 @@
 export interface IProductRowProps {
-    image: string,
-    name: string,
-    price: string,
+  image: string;
+  name: string;
+  price: string;
 }
