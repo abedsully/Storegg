@@ -55,6 +55,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     marginBottom: 100,
+    paddingLeft: 15,
+    paddingRight: 15,
   },
   searchView: {
     width: '100%',

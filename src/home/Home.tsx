@@ -158,6 +158,7 @@ const Home = ({navigation}: RootStackScreenProps<'Home'>) => {
             key="list"
             data={filteredData}
             renderItem={renderListItem}
+            contentContainerStyle={styles.gridContentContainer}
           />
         )}
       </View>
@@ -171,16 +172,12 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     width: 30,
     height: 30,
-    marginLeft: 18,
-  },
-
-  product: {
-    marginLeft: 30,
+    marginRight: 15,
   },
 
   container: {
-    paddingLeft: 30,
-    paddingRight: 30,
+    paddingLeft: 10,
+    paddingRight: 10,
     paddingBottom: 150,
     marginBottom: 25,
   },
@@ -194,7 +191,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
     gap: 10,
-    paddingLeft: 10,
+    paddingLeft: 20,
   },
 });
 
