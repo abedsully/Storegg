@@ -10,6 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@expo/metro-config": "^0.5.2",
     "@react-native-async-storage/async-storage": "^1.21.0",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.17",
@@ -43,5 +44,8 @@
   },
   "engines": {
     "node": ">=16"
+  },
+  "jest": {
+    "preset": "react-native"
   }
 }
